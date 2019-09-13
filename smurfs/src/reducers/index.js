@@ -26,7 +26,11 @@ export const reducer = (state = initialState, action) => {
             };
         case POST_SMURF:
             return {
-
+                ...state,
+                smurfs: [
+                    ...state.smurfs,
+                    action.payload
+                ]
             };
         default:
             return state;
