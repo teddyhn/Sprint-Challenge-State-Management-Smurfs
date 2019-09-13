@@ -9,17 +9,23 @@ const App = ({ getSmurfs, smurfs, isFetching }) => {
 
   const handleChanges = evt => {
     setNewSmurf({ ...newSmurf, [evt.target.name]: evt.target.value });
-    console.log(newSmurf);
   };
 
   const handleSubmit = evt => {
     evt.target.reset();
     const newSmurfToAdd = {
         ...newSmurf,
+        age: parseInt(newSmurf.age),
+        id: smurfs[smurfs.length - 1].id + 1
     };
     axios
       .post("http://localhost:3333/smurfs", newSmurfToAdd)
   };
+
+  const deleteSmurf = id => {
+    axios
+      .delete(`http://localhost:3333/smurfs/${id}`)
+  }
 
   useEffect(() => {
     getSmurfs();
@@ -28,6 +34,8 @@ const App = ({ getSmurfs, smurfs, isFetching }) => {
   if (isFetching) {
     return <h3>Retrieving smurfs...</h3>;
   }
+
+  console.log(smurfs);
 
   return (
     <div className="App">
@@ -66,6 +74,14 @@ const App = ({ getSmurfs, smurfs, isFetching }) => {
           <p>Name: {smurf.name}</p>
           <p>Age: {smurf.age}</p>
           <p>Height: {smurf.height}</p>
+          <button
+            onClick={() => {
+              deleteSmurf(smurf.id);
+              window.location.reload();
+            }}
+          >
+            Delete
+          </button>
         </div>
     ))}
     </div>
