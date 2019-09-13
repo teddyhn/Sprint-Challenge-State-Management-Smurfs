@@ -23,10 +23,24 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+Passing data to components without having to go top-down like with props.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+Actions contain information that describe to the reducer how we want our state to be updated. Updates to the state are all reflected in the store which manages state for the entire Redux application. The store is known as the 'single source of truth' because all components in a Redux application are rendered and updated based on state which is managed by the store.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Application state is immutable as opposed to Component state which is mutable. Application state would be preferred when global access to state is required rather than passing down state locally through props.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+redux-thunk allows for asynchronous flow of actions dispatched to reducers. Redux-thunk changes action-creators by intercepting what is returned when the action-creator is called and forward the action to the reducer if an action is returned, or invoke a function and pass the dispatch function as an argument if a function is returned.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+Redux because after wrapping your head around it, it becomes intuitive to manage state by dispatching actions to reducers all while having a single, global source for state in the store.
 
 ## Project Set Up
 
